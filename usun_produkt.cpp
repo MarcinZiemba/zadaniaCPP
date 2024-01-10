@@ -6,13 +6,13 @@
 using namespace std;
 
 struct Produkt{
+    string id;
     string nazwa;
     int ilosc;
-    string termin_przydatnosci;
+    string data_waznosci;
 };
 
 vector<Produkt> wczytajDaneZBazy();
-void usunProduktZLodowki(int numerProduktu);
 void usunProduktZLodowki(int numerProduktu, vector<Produkt>& produkty, string nazwaPliku);
 void wyswietlZawartoscLodowki(vector<Produkt> produkty);
 
@@ -49,7 +49,7 @@ vector<Produkt> wczytajDaneZBazy(){
 
     while (!plik.eof()) {
         Produkt nowyProdukt;
-        plik >> nowyProdukt.nazwa >> nowyProdukt.ilosc >> nowyProdukt.termin_przydatnosci;
+        plik >> nowyProdukt.nazwa >> nowyProdukt.ilosc >> nowyProdukt.data_waznosci;
         produkty.push_back(nowyProdukt);
     }
 
@@ -69,7 +69,7 @@ void usunProduktZLodowki(int numerProduktu, vector<Produkt>& produkty, string na
                 string nowaLinia = i + 1 == produkty.size() ? "" : "\n"; 
                 
                 nowyPlik << produkty[i].nazwa << " " << produkty[i].ilosc 
-                         << " " << produkty[i].termin_przydatnosci << nowaLinia;
+                         << " " << produkty[i].data_waznosci << nowaLinia;
             }
 
             cout << "Produkt usuniêty." << endl;
@@ -84,6 +84,6 @@ void usunProduktZLodowki(int numerProduktu, vector<Produkt>& produkty, string na
 void wyswietlZawartoscLodowki(vector<Produkt> produkty){
     for(int i = 0; i < produkty.size(); i++){
         cout << i + 1 << " " << produkty[i].nazwa << " " << produkty[i].ilosc 
-             << " " << produkty[i].termin_przydatnosci << endl;
+             << " " << produkty[i].data_waznosci << endl;
     }    
 }
